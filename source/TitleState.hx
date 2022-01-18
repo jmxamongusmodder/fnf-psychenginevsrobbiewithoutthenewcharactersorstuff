@@ -498,11 +498,10 @@ class TitleState extends MusicBeatState
 								function(twn:FlxTween) {
 									FlxTransitionableState.skipNextTransIn = true;
 									FlxTransitionableState.skipNextTransOut = true;
-									MusicBeatState.switchState(new TitleState());
+		                                                        gfDance.frames = Paths.getSparrowAtlas('ultra');
 								}
 							});
 							lastKeysPressed = [];
-							closedState = true;
 							transitioning = true;
 						}*/
 					}
@@ -640,6 +639,7 @@ class TitleState extends MusicBeatState
 					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 
 				case 16:
+			                FlxG.camera.flash(FlxColor.WHITE, 4);
 					skipIntro();
 			}
 		}
@@ -660,7 +660,6 @@ class TitleState extends MusicBeatState
 		{
 			remove(ngSpr);
 
-			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
 		}
