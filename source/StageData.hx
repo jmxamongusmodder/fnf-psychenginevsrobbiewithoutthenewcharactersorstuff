@@ -16,6 +16,7 @@ typedef StageFile = {
 	var directory:String;
 	var defaultZoom:Float;
 	var isPixelStage:Bool;
+	var isSpookyStage:Bool; //Support for stages that have white flashes in it
 
 	var boyfriend:Array<Dynamic>;
 	var girlfriend:Array<Dynamic>;

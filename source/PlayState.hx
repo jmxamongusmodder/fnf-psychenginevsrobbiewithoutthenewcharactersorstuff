@@ -235,6 +235,7 @@ class PlayState extends MusicBeatState
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
+// 	public static var rating:Int = 0.2;
 	public static var seenCutscene:Bool = false;
 	public static var deathCounter:Int = 0;
 
@@ -389,6 +390,7 @@ class PlayState extends MusicBeatState
 				directory: "",
 				defaultZoom: 0.9,
 				isPixelStage: false,
+ 				isSpookyStage: false, //Spooky stage support
 			
 				boyfriend: [770, 100],
 				girlfriend: [400, 130],
@@ -398,6 +400,7 @@ class PlayState extends MusicBeatState
 
 		defaultCamZoom = stageData.defaultZoom;
 		isPixelStage = stageData.isPixelStage;
+                isSpookyStage = stageData.isSpookyStage;
 		BF_X = stageData.boyfriend[0];
 		BF_Y = stageData.boyfriend[1];
 		GF_X = stageData.girlfriend[0];
@@ -651,6 +654,10 @@ class PlayState extends MusicBeatState
 			introSoundsSuffix = '-pixel';
 		}
 
+ 		if(isSpookyStage) {
+			add(halloweenWhite);
+		}
+
 		add(gfGroup);
 
 		// Shitty layering but whatev it works LOL
@@ -660,9 +667,9 @@ class PlayState extends MusicBeatState
 		add(dadGroup);
 		add(boyfriendGroup);
 		
-/*		if(curStage == 'spooky') {
+		if(curStage == 'spooky') {
 			add(halloweenWhite);
-		}*/
+		}
 
 		#if LUA_ALLOWED
 		luaDebugGroup = new FlxTypedGroup<DebugLuaText>();
@@ -1613,6 +1620,10 @@ class PlayState extends MusicBeatState
 				if(isPixelStage) {
 					introAlts = introAssets.get('pixel');
 					antialias = false;
+				}
+
+				if(isSpookyStage) {
+					antialias = true;
 				}
 
 				// head bopping for bg characters on Mall
